@@ -2,7 +2,7 @@ package com.test.tools.demo.tools.response;
 
 import java.util.List;
 
-public class RegistByIdRes {
+public class RegistByClassIdRes {
 
     /**
      * pageSize : 20

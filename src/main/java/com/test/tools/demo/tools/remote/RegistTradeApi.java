@@ -3,7 +3,7 @@ package com.test.tools.demo.tools.remote;
 import com.test.tools.demo.tools.response.ClassRegistCountRes;
 import com.test.tools.demo.tools.response.ServerResult;
 import com.test.tools.demo.tools.request.RegistByClassIdReq;
-import com.test.tools.demo.tools.response.RegistByIdRes;
+import com.test.tools.demo.tools.response.RegistByClassIdRes;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,5 +22,5 @@ public interface RegistTradeApi {
      * @return
      */
     @PostMapping(value = "regist/getRegistByClassId")
-    ServerResult<RegistByIdRes> getRegistByClassId(@RequestBody RegistByClassIdReq registByClassIdReq, @RequestHeader("area") String area, @RequestHeader(value = "X-CA-Stage") String stage);
+    ServerResult<RegistByClassIdRes> getRegistByClassId(@RequestBody RegistByClassIdReq registByClassIdReq, @RequestHeader("area") String area, @RequestHeader(value = "X-CA-Stage") String stage);
 }
