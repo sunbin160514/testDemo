@@ -2,15 +2,8 @@ package com.test.tools.demo.tools.response;
 
 import java.util.List;
 
-public class RegistByIdRes {
+public class RegistByClassIdRes {
 
-    /**
-     * pageSize : 20
-     * pageNo : 1
-     * totalCount : -1
-     * rows : [{"id":"6adb00ba2cac462d821d88c04a9e1247","orgCode":"010","termId":"1","classId":"fcd2cfe49a984f0eac54881e2fc4070e","studentUid":"1020202301","studentId":"43cdf9e82b2948938cc4a326d91025b0","isPay":0,"regWay":0,"classType":4,"deleted":0},{"id":"81c92aea35a34991ab12896ed222ace8","orgCode":"010","termId":"1","classId":"fcd2cfe49a984f0eac54881e2fc4070e","studentUid":"1020203962","studentId":"5ba6b49bcdce40d68618f6049c6b1bbf","isPay":1,"regWay":0,"classType":4,"deleted":0}]
-     * totalPage : 1
-     */
 
     private int pageSize;
     private int pageNo;
@@ -59,18 +52,6 @@ public class RegistByIdRes {
     }
 
     public static class RowsBean {
-        /**
-         * id : 6adb00ba2cac462d821d88c04a9e1247
-         * orgCode : 010
-         * termId : 1
-         * classId : fcd2cfe49a984f0eac54881e2fc4070e
-         * studentUid : 1020202301
-         * studentId : 43cdf9e82b2948938cc4a326d91025b0
-         * isPay : 0
-         * regWay : 0
-         * classType : 4
-         * deleted : 0
-         */
 
         private String id;
         private String orgCode;

@@ -1,17 +1,8 @@
 package com.test.tools.demo.tools.request;
 
+import java.util.List;
+
 public class RefundReq {
-    /**
-     * registId : d355c023e5b1468aa8981e4db83e26b4
-     * studentId : 9e9e512aa7d644dc802360b3f01cc453
-     * cflat : 11
-     * reasonId : otherReason1
-     * reasonName : 其他
-     * operatorId : trojan
-     * serviceCenterId : 204B055EB978410E8F393527FAD80D74
-     * repairRefundNo : 0
-     * noNeedDeductMaterial : 1
-     */
 
     private String registId;
     private String studentId;
@@ -21,7 +12,9 @@ public class RefundReq {
     private String operatorId;
     private String serviceCenterId;
     private int repairRefundNo;
-    private int noNeedDeductMaterial;
+    private int noNeedDeductMaterials;
+    private List<Integer> moreRefundCurriculumNums;
+    private List<?> lessRefundCurriculumNums;
 
     public String getRegistId() {
         return registId;
@@ -87,11 +80,27 @@ public class RefundReq {
         this.repairRefundNo = repairRefundNo;
     }
 
-    public int getNoNeedDeductMaterial() {
-        return noNeedDeductMaterial;
+    public int getNoNeedDeductMaterials() {
+        return noNeedDeductMaterials;
     }
 
-    public void setNoNeedDeductMaterial(int noNeedDeductMaterial) {
-        this.noNeedDeductMaterial = noNeedDeductMaterial;
+    public void setNoNeedDeductMaterials(int noNeedDeductMaterials) {
+        this.noNeedDeductMaterials = noNeedDeductMaterials;
+    }
+
+    public List<Integer> getMoreRefundCurriculumNums() {
+        return moreRefundCurriculumNums;
+    }
+
+    public void setMoreRefundCurriculumNums(List<Integer> moreRefundCurriculumNums) {
+        this.moreRefundCurriculumNums = moreRefundCurriculumNums;
+    }
+
+    public List<?> getLessRefundCurriculumNums() {
+        return lessRefundCurriculumNums;
+    }
+
+    public void setLessRefundCurriculumNums(List<?> lessRefundCurriculumNums) {
+        this.lessRefundCurriculumNums = lessRefundCurriculumNums;
     }
 }

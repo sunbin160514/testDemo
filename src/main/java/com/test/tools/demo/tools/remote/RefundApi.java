@@ -8,10 +8,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
+import java.util.List;
+
 @FeignClient(name = "refund",url = "http://refund-trade.speiyou.com/mplat-trade-refund/refund")
 public interface RefundApi {
-    @PostMapping(value = "/employee/toRefund")
-    ServerResult<RefundRes> toRefund(@RequestBody RefundReq RefundReq, @RequestHeader("area") String area);
+    /**
+     * http://apidoc.speiyou.cn/api/view/6431#
+     * @param area
+     * @param refundReqList
+     * @return
+     */
+    @PostMapping(value = "employee/toRefund")
+    ServerResult<List<RefundRes>> toRefund(@RequestHeader("area") String area, @RequestBody List<RefundReq> refundReqList);
 
 
 

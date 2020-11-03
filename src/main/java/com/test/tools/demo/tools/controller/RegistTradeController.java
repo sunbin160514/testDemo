@@ -10,16 +10,13 @@ import org.springframework.web.bind.annotation.*;
 public class RegistTradeController {
     @Autowired
     private RegistService registService;
-
-    @GetMapping("/getClassRegistCount")
-    public ServerResult getClassRegistCount(@RequestHeader("area") String area, @RequestParam("classIds") String classIds){
-        return registService.classRegistCount(area,classIds);
-    }
-
-
-    @GetMapping("/getRegistById")
+    @GetMapping("/getRegistByClassId")
     public ServerResult getRegistById(@RequestHeader("area") String area, @RequestParam("classId") String classId){
-               return registService.registByClassId(classId, area);
+//               return registService.registByClassId(classId, area);
+        ServerResult result= new ServerResult();
+        result.setData(registService.registByClassId(classId,area));
+        return result;
+
     }
 
 

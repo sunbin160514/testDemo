@@ -2,7 +2,7 @@ package com.test.tools.demo.tools.response;
 
 public class ServerResult<T> {
     private boolean rlt = true;
-    private String code = "200";
+    private String code = "000000";
     private T data;
 
     public boolean isRlt() {
