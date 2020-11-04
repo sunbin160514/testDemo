@@ -3,4 +3,4 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.11.133:8066/trade_regist
     username: M_trade_regist
-    password: M_trade_regist
+    password: M_trade_regist_pwd
