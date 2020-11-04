@@ -1,7 +1,6 @@
 package com.test.tools.demo.tools.controller;
 
 import com.test.tools.demo.tools.request.RefundBodyReq;
-
 import com.test.tools.demo.tools.response.ServerResult;
 import com.test.tools.demo.tools.service.impl.RefundServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import java.util.List;
 public class RefundController {
     @Autowired
     private RefundServiceImpl refundService;
-
     @PostMapping("/toRefund")
     public ServerResult toRefund(@RequestHeader("area") String area, @RequestBody List<RefundBodyReq>  refundBodyReqs) {
        return refundService.refund(area,refundBodyReqs);

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "refund",url = "http://refund-trade.speiyou.com/mplat-trade-refund/refund")
+@FeignClient(name = "refund",url = "http://test-refund-trade.speiyou.com/mplat-trade-refund/refund")
 public interface RefundApi {
     /**
      * http://apidoc.speiyou.cn/api/view/6431#
