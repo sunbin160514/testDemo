@@ -2,6 +2,7 @@ package com.test.tools.demo.tools.response;
 
 public class ServerResult<T> {
     private boolean rlt = true;
+    private String message;
     private String code = "000000";
     private T data;
 
@@ -28,6 +29,14 @@ public class ServerResult<T> {
     public void setData(T data) {
         this.data = data;
     }
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
 
 
 

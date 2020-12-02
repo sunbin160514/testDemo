@@ -4,3 +4,16 @@ spring:
     url: jdbc:mysql://192.168.11.133:8066/trade_regist
     username: M_trade_regist
     password: M_trade_regist_pwd
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  global-config:
+    db-config:
+      #删除前
+      logic-not-delete-value: 1
+      #删除后
+    logic-delete-value: 0

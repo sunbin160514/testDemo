@@ -19,7 +19,6 @@ public class RefundServiceImpl implements RefundService {
     @Autowired
     private RefundApi refundApi;
 
-
     public ServerResult<List<RefundRes>> refund(String area, List<RefundBodyReq> refundBodyReqs) {
         //构建参数
         ServerResult<List<RefundRes>> result = new ServerResult();
@@ -47,18 +46,12 @@ public class RefundServiceImpl implements RefundService {
         RefundReq req = new RefundReq();
         req.setRegistId(registId);
         req.setStudentId(studentId);
-        int cflat = 11;
-        String reasonId = "002004";
-        String reasonName = "学员自动退费";
-        String operatorId = "trojan";
-        String serviceCenterId = "204B055EB978410E8F393527FAD80D74";
-        int noNeedDeductMaterial = 1;
-        req.setCflat(cflat);
-        req.setReasonId(reasonId);
-        req.setReasonName(reasonName);
-        req.setOperatorId(operatorId);
-        req.setServiceCenterId(serviceCenterId);
-        req.setNoNeedDeductMaterials(noNeedDeductMaterial);
+        req.setCflat(11);
+        req.setReasonId("002004");
+        req.setReasonName("学员自动退费");
+        req.setOperatorId("trojan");
+        req.setServiceCenterId("204B055EB978410E8F393527FAD80D74");
+        req.setNoNeedDeductMaterials(1);
         return req;
     }
 

@@ -19,5 +19,7 @@ public interface RegistTradeApi {
      * @return
      */
     @PostMapping(value = "regist/getRegistByClassId")
-    ServerResult<RegistByClassIdRes> getRegistByClassId(@RequestBody RegistByClassIdReq registByClassIdReq, @RequestHeader("area") String area, @RequestHeader(value = "X-CA-Stage") String stage);
+    ServerResult<RegistByClassIdRes> getRegistByClassId(@RequestBody RegistByClassIdReq registByClassIdReq,
+                                                        @RequestHeader("area") String area,
+                                                        @RequestHeader(value = "X-CA-Stage") String stage);
 }
