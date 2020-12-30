@@ -1,12 +1,15 @@
 package com.test.tools.demo.tools.service.impl;
 
-import com.test.tools.demo.tools.domain.TbRegistStages;
+import com.test.tools.demo.tools.domain.RegistStages;
 import com.test.tools.demo.tools.remote.OrderTradeApi;
 import com.test.tools.demo.tools.request.CreateOrderReqs;
 import com.test.tools.demo.tools.request.OrderReq;
-import com.test.tools.demo.tools.response.*;
-import com.test.tools.demo.tools.service.TbRegistStagesService;
+import com.test.tools.demo.tools.response.CreateOrderResp;
+import com.test.tools.demo.tools.response.DoSaveOrderResp;
+import com.test.tools.demo.tools.response.OrderRes;
+import com.test.tools.demo.tools.response.ServerResult;
 import com.test.tools.demo.tools.service.OrderService;
+import com.test.tools.demo.tools.service.RegistStagesService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +33,10 @@ public class OrderServiceImpl implements OrderService {
      */
     @Autowired
     private OrderTradeApi orderTradeApi;
-    @Autowired
-    private TbRegistStagesService registStagesService;
 
+    @Autowired
+    private RegistStagesService registStagesService;
+    @Override
     public DoSaveOrderResp createOrder(String area, List<CreateOrderReqs> reqs) {
         DoSaveOrderResp doSaveOrderResp =new DoSaveOrderResp();
         if (!CollectionUtils.isEmpty(reqs)){
@@ -47,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
         }
         return doSaveOrderResp;
     }
-
+    @Override
     public CreateOrderResp toCreateOrder(String area, List<CreateOrderReqs> reqs) {
         CreateOrderResp createOrderResps = new CreateOrderResp();
         if (!CollectionUtils.isEmpty(reqs)) {
@@ -74,9 +78,9 @@ public class OrderServiceImpl implements OrderService {
         OrderReq req = new OrderReq();
         if (!CollectionUtils.isEmpty(reqs)) {
             List<String> registerIds = reqs.stream().map(CreateOrderReqs::getRegistId).collect(Collectors.toList());//将reqs中registId单独提取
-            List<TbRegistStages> scockIdByRegistIds = registStagesService.getScockIdByRegistIds(registerIds);
+            List<RegistStages> scockIdByRegistIds = registStagesService.getScockIdByRegistIds(registerIds);
             //将scockIdByRegistIds集合按照registId分组
-            Map<String, List<TbRegistStages>> groupById = scockIdByRegistIds.stream().collect(Collectors.groupingBy(TbRegistStages::getRegistId));
+            Map<String, List<RegistStages>> groupById = scockIdByRegistIds.stream().collect(Collectors.groupingBy(RegistStages::getRegistId));
             req.setBusinessNo("01");
             if (null == resp) {
                 req.setOrderNo("");
@@ -88,7 +92,7 @@ public class OrderServiceImpl implements OrderService {
             req.setFusionOrderAddressDto(bulidAddress());//收货地址
             for (CreateOrderReqs params : reqs) {
                 if (groupById.containsKey(params.getRegistId())) {
-                    List<TbRegistStages> bodyReq = groupById.get(params.getRegistId());
+                    List<RegistStages> bodyReq = groupById.get(params.getRegistId());
                     req.setStudentId(bodyReq.get(0).getStudentId());//根据报名id查询
                     req.setStudentUid(bodyReq.get(0).getStudentUid());//根据报名id查询
                     List<OrderReq.ClassPromotionsBean> classPromotions;
@@ -118,14 +122,14 @@ public class OrderServiceImpl implements OrderService {
      * @return
      */
 
-    private List<OrderReq.ClassPromotionsBean> buildClassPromotionsReq(List<TbRegistStages> bodyReqs) {
+    private List<OrderReq.ClassPromotionsBean> buildClassPromotionsReq(List<RegistStages> bodyReqs) {
         return buildClassPromotionsReq(bodyReqs, "");
     }
 
-    private List<OrderReq.ClassPromotionsBean> buildClassPromotionsReq(List<TbRegistStages> bodyReqs, String couponNum) {
+    private List<OrderReq.ClassPromotionsBean> buildClassPromotionsReq(List<RegistStages> bodyReqs, String couponNum) {
         List<OrderReq.ClassPromotionsBean> classPromotions = new ArrayList<>();
         if (!CollectionUtils.isEmpty(bodyReqs)) {
-            for (TbRegistStages param : bodyReqs) {
+            for (RegistStages param : bodyReqs) {
                 OrderReq.ClassPromotionsBean req = new OrderReq.ClassPromotionsBean();
                 req.setRegisterId(param.getRegistId());
                 req.setClassId(param.getClassId());

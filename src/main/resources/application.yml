@@ -1,9 +1,28 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.11.133:8066/trade_regist
-    username: M_trade_regist
-    password: M_trade_regist_pwd
+    type: com.alibaba.druid.pool.DruidDataSource
+    primary:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.11.133:8066/trade_regist
+      username: M_trade_regist
+      password: M_trade_regist_pwd
+      type: com.alibaba.druid.pool.DruidDataSource
+    local:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.30.251:3306/testtools
+      username: yanyu
+      password: mock@2018
+      type: com.alibaba.druid.pool.DruidDataSource
+    prod:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://rm-2ze83s52f2ekt46mi.mysql.rds.aliyuncs.com:3306/call-center
+      username: callcenter_rw
+      password: callcenter_RW
+      type: com.alibaba.druid.pool.DruidDataSource
+
+
+
+
 
 mybatis-plus:
   configuration:

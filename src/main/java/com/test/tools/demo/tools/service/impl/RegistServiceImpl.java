@@ -26,28 +26,12 @@ public class RegistServiceImpl implements RegistService {
     private RegistTradeApi registTradeApi;
 
     /**
-     * 返回原接口所有参数
-     * @param classId
-     * @param area
-     * @return
-     */
-
-//    public ServerResult<RegistByClassIdRes> registByClassIdWith(String classId, String area) {
-//        RegistByClassIdReq req = new RegistByClassIdReq();
-//        List<RegistByClassIdListRes> registByClassIdList = new ArrayList<>();
-//        req.setClassId(classId);
-//        String clolumns = "id,classId,studentId,isPay";
-//        req.setColumns(clolumns);
-//        ServerResult<RegistByClassIdRes> registByClassId = registTradeApi.getRegistByClassId(req, area, "DEV");
-//        return registByClassId;
-//    }
-
-    /**
      * 仅返回registId和studentId
      * @param classId
      * @param area
      * @return
      */
+    @Override
     public List<RegistByClassIdListRes> registByClassId(String classId, String area) {
         List<RegistByClassIdListRes> object = new ArrayList<>();
         RegistByClassIdReq req = new RegistByClassIdReq();

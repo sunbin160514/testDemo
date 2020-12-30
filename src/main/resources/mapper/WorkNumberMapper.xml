@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.tools.demo.tools.mapper.WorkNumberMapper">
+
+    <resultMap id="WorkNumberMapper" type="com.test.tools.demo.tools.mapper.WorkNumberMapper">
+        <!-- column传数据库字段，property传实体类字段， 表中字段要对应实体类的字段-->
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="work_number" property="workNumber" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="user_number" property="userNumber" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <!-- sql语句：id为方法名  -->
+    <select id="Sel" resultType="com.test.tools.demo.tools.domain.WorkNumber" parameterType="java.lang.Integer">
+        SELECT *  from tb_test where type=#{type}
+    </select>
+
+    <insert id="insert" parameterType="com.test.tools.demo.tools.domain.WorkNumber" >
+    insert into tb_test (id,work_number,type,user_number
+      )
+    values (#{id,jdbcType=VARCHAR}, #{workNumber,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
+      #{userNumber,jdbcType=VARCHAR}
+      )
+  </insert>
+</mapper>

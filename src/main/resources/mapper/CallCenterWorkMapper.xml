@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.tools.demo.tools.mapper.CallCenterWorkMapper">
+
+    <resultMap id="CallCenterWorkMapper" type="com.test.tools.demo.tools.mapper.CallCenterWorkMapper">
+        <!-- column传数据库字段，property传实体类字段， 表中字段要对应实体类的字段-->
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="workNumber" property="workNumber" jdbcType="VARCHAR"/>
+        <result column="one_classify" property="oneClassify" jdbcType="VARCHAR"/>
+        <result column="two_classify" property="twoClassify" jdbcType="VARCHAR"/>
+        <result column="three_classify" property="threeClassify" jdbcType="VARCHAR"/>
+        <result column="creator" property="creator" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <!-- sql语句：id为方法名  -->
+    <select id="queryByType" resultType="com.test.tools.demo.tools.domain.CallCenterWork" parameterType="java.lang.Integer">
+        SELECT *  from call_center_work where type=#{type}
+    </select>
+
+    <select id="queryByNumber" resultType="com.test.tools.demo.tools.domain.CallCenterWork" parameterType="java.lang.String">
+        SELECT *  from call_center_work where workNumber=#{workNumber}
+    </select>
+    
+
+    <insert id="workInsert" parameterType="com.test.tools.demo.tools.domain.CallCenterWork">
+    insert into call_center_work (workNumber,one_classify,two_classify,three_classify,creator,type,create_time
+      )
+    values (#{workNumber,jdbcType=VARCHAR},#{oneClassify,jdbcType=VARCHAR},#{twoClassify,jdbcType=VARCHAR},
+    #{threeClassify,jdbcType=VARCHAR},#{creator,jdbcType=VARCHAR},#{type,jdbcType=INTEGER},#{createTime,jdbcType=VARCHAR}
+      )
+  </insert>
+</mapper>
