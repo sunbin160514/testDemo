@@ -21,7 +21,12 @@ spring:
       type: com.alibaba.druid.pool.DruidDataSource
 
 
-
+# 配置pagehelper参数
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
 
 mybatis-plus:
@@ -36,3 +41,10 @@ mybatis-plus:
       logic-not-delete-value: 1
       #删除后
     logic-delete-value: 0
+
+
+
+
+logging:
+  level:
+    root: info

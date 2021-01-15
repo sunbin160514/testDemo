@@ -17,14 +17,45 @@
 
 
     <!-- sql语句：id为方法名  -->
-    <select id="queryByType" resultType="com.test.tools.demo.tools.domain.CallCenterWork" parameterType="java.lang.Integer">
+    <select id="queryByType" resultType="com.test.tools.demo.tools.domain.CallCenterWork"
+            parameterType="java.lang.Integer">
         SELECT *  from call_center_work where type=#{type}
     </select>
 
-    <select id="queryByNumber" resultType="com.test.tools.demo.tools.domain.CallCenterWork" parameterType="java.lang.String">
+    <select id="queryByNumber" resultType="com.test.tools.demo.tools.domain.CallCenterWork"
+            parameterType="java.lang.String">
         SELECT *  from call_center_work where workNumber=#{workNumber}
     </select>
-    
+
+<!--根据不同传参查询-->
+    <select id="queryByParams" resultType="com.test.tools.demo.tools.domain.CallCenterWork"
+                     parameterType="com.test.tools.demo.tools.domain.CallCenterWork">
+    SELECT * from call_center_work where 1=1
+    <if test="type!=null and type != 100">
+        and type = #{type}
+    </if>
+    <if test="workNumber!=null and  workNumber != '' ">
+        and workNumber = #{workNumber}
+    </if>
+    <if test="creator!=null and  creator != '' ">
+        and creator = #{creator}
+    </if>
+</select>
+<!--分页展示-->
+    <select id="queryPage" resultType="com.test.tools.demo.tools.domain.CallCenterWork"
+            parameterType="com.test.tools.demo.tools.domain.CallCenterWork">
+        SELECT * from call_center_work where 1=1
+        <if test="type!=null and type != 0">
+            and type = #{type}
+        </if>
+        <if test="workNumber!=null and  workNumber != '' ">
+            and workNumber = #{workNumber}
+        </if>
+        <if test="creator!=null and  creator != '' ">
+            and creator = #{creator}
+        </if>
+
+    </select>
 
     <insert id="workInsert" parameterType="com.test.tools.demo.tools.domain.CallCenterWork">
     insert into call_center_work (workNumber,one_classify,two_classify,three_classify,creator,type,create_time

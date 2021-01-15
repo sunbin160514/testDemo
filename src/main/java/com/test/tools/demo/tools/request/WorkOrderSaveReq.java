@@ -37,6 +37,7 @@ public class WorkOrderSaveReq {
     private String creator;
     private String callLogId;
     private List<ContentListBean> contentList;
+    private String schoolCallRemind;
 
 
     public static class ContentListBean {

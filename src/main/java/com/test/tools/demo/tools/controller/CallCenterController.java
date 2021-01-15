@@ -2,6 +2,7 @@ package com.test.tools.demo.tools.controller;
 
 import com.test.tools.demo.tools.domain.CallCenterWork;
 import com.test.tools.demo.tools.remote.CallCenterApi;
+import com.test.tools.demo.tools.request.PageReq;
 import com.test.tools.demo.tools.request.WorkOrderSaveReq;
 import com.test.tools.demo.tools.request.WorkOrderSaveReqs;
 import com.test.tools.demo.tools.response.SaveWorkOrderRes;
@@ -28,7 +29,7 @@ public class CallCenterController {
 
 
     @PostMapping("/workOrderSave")
-    ServerResult<SaveWorkOrderRes> workOrderSave(@RequestBody WorkOrderSaveReqs req) throws Exception {
+    public ServerResult<SaveWorkOrderRes> workOrderSave(@RequestBody WorkOrderSaveReqs req) throws Exception {
         SaveWorkOrderRes res = saveWorkOrder(req);
         CallCenterWork workParams = new CallCenterWork();
         workParams.setWorkNumber(res.getWorkNumber());
@@ -44,6 +45,47 @@ public class CallCenterController {
         return result;
     }
 
+//    @GetMapping("/for")
+//    public void a () throws Exception {
+//        for(int i=0;i<100;i++){
+//
+//            WorkOrderSaveReqs reqs = new WorkOrderSaveReqs();
+//            reqs.setBusinessType1("010000").setBusinessType2("010100").setBusinessType3("010103").setType(2).setUserNumber("11113");
+//            workOrderSave(reqs);
+//            System.out.println("数据构造完毕");
+//        }
+//    }
+
+
+    /**
+     * 根据不同条件进行查询
+     * @param type
+     * @param workNumber
+     * @param creator
+     * @return
+     */
+    @GetMapping("/query")
+    List<CallCenterWork> query(@RequestParam(required = false,defaultValue = "0") Integer type,  String workNumber, String creator) {
+        CallCenterWork param = new CallCenterWork();
+        param.setType(type).setWorkNumber(workNumber).setCreator(creator);
+        return callCenterService.queryByParams(param);
+
+    }
+    /**
+     * 分页查找方法
+     * @param pageQuery
+     * @return
+     */
+    @PostMapping("/queryPage")
+    public Object queryPage(@RequestBody PageReq pageQuery) {
+        return callCenterService.queryPage(pageQuery);
+    }
+
+    /**
+     * 通过工单类型查询
+     * @param type
+     * @return
+     */
     @GetMapping("/queryWorkByType")
     ServerResult<List<CallCenterWork>> queryWorkInfoByType(int type) {
         ServerResult result = new ServerResult();
@@ -52,6 +94,11 @@ public class CallCenterController {
 
     }
 
+    /**
+     * 通过工单号查询
+     * @param number
+     * @return
+     */
     @GetMapping("/queryWorkByNumber")
     ServerResult<CallCenterWork> queryWorkInfoByNumber(String number) {
         ServerResult result = new ServerResult();
@@ -61,6 +108,8 @@ public class CallCenterController {
     }
 
 
+
+
     private SaveWorkOrderRes saveWorkOrder(@RequestBody WorkOrderSaveReqs req) throws Exception {
         SaveWorkOrderRes res = new SaveWorkOrderRes();
         WorkOrderSaveReq workOrderSaveReq = buildReq(req);
@@ -68,7 +117,7 @@ public class CallCenterController {
             throw new Exception("坐席号不能为空");
         }
         ServerResult<String> result = callCenterApi.workOrderSave(req.getUserNumber(), workOrderSaveReq);
-        if (result.isRlt() && "000000".equals(result.getCode())) {
+        if (result.isRlt() && "00000".equals(result.getCode())) {
             Date date = new Date();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
             res.setId(result.getData());
@@ -90,8 +139,8 @@ public class CallCenterController {
                 throw new Exception("一二三级不能为空");
             }
             req.setStudentId("206010000190").setStudentName("材料费测试6").setAreaCode("010").setStudentGrade("4")
-                    .setOldStudent(1).setIdentity(1).setPhoneNumber("15100000000").setChannel(1).setCallRemind("CBR2")
-                    .setProcessResult(1).setProcessProgress(1).setCallbackPhone("15100000000").setCallbackTime("1638959499")
+                    .setOldStudent(1).setIdentity(1).setPhoneNumber("15100000000").setChannel(1).setCallRemind("CBR1")
+                    .setProcessResult(1).setProcessProgress(1).setCallbackPhone("15100000000").setCallbackTime("1638959499").setSchoolCallRemind("CBR1")
                     .setCreator("").setCallLogId("CTI_CALL_ID_0001");
             req.setBusinessType1(reqs.getBusinessType1());
             req.setBusinessType2(reqs.getBusinessType2());
